@@ -1,0 +1,19 @@
+# Copy to config.yaml and adjust paths for your scrcpy window region.
+adb:
+  device: ""  # optional serial, e.g. "192.168.1.10:5555"
+
+capture:
+  # Screen region of the mirrored game (left, top, width, height)
+  monitor: [0, 0, 1280, 720]
+
+templates:
+  chef_icon: assets/chef.png
+  barista_icon: assets/barista.png
+  upgrade_button: assets/upgrade_btn.png
+
+thresholds:
+  template_match: 0.82
+
+timing:
+  hold_ms: 1200
+  menu_poll_s: 45
