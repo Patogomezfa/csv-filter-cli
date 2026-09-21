@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cookie PnL — Cookie Chain cApp</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div>
+      <p class="eyebrow">Cookie Chain cApp</p>
+      <h1>Cookie PnL</h1>
+      <p class="lede">Live Cookie Chain dashboard: Cookiescan markets, Cookiebox swap quotes, Nightly wallet, and a real on-chain memo ping. Wallet, transaction, confirmation, charts.</p>
+    </div>
+    <div class="actions">
+      <button id="btnConnect" type="button">Connect Nightly</button>
+      <button id="btnPing" type="button" class="ghost" disabled>Ping on-chain</button>
+      <button id="btnRefresh" type="button" class="ghost">Refresh</button>
+    </div>
+  </header>
+
+  <p id="status" class="top status">Checking Cookie Chain RPC…</p>
+
+  <section class="kpis">
+    <article><span>Wallet</span><strong id="kpiWallet">not connected</strong></article>
+    <article><span>COOK balance</span><strong id="kpiBal">—</strong></article>
+    <article><span>Recent txs</span><strong id="kpiTx">—</strong></article>
+    <article><span>Slot</span><strong id="kpiSlot">—</strong></article>
+  </section>
+  <section class="kpis">
+    <article><span>Network</span><strong id="kpiGenesis">—</strong></article>
+    <article><span>solana-core</span><strong id="kpiVersion">—</strong></article>
+    <article><span>Full address</span><strong><a id="walletFull" class="mono" href="https://cookiescan.io" target="_blank" rel="noopener">—</a></strong></article>
+    <article><span>Last ping</span><strong id="lastSig">—</strong></article>
+  </section>
+  <section class="kpis">
+    <article><span>COOK / bCOOK quote (1 COOK)</span><strong id="kpiQuote">—</strong></article>
+    <article><span>Venue</span><strong id="kpiVenue">—</strong></article>
+    <article><span>Price impact</span><strong id="kpiImpact">—</strong></article>
+    <article><span>COOK USD (Cookiescan)</span><strong id="kpiCookUsd">—</strong></article>
+  </section>
+
+  <section class="panel">
+    <h2>Cookie Chain markets</h2>
+    <p class="hint">Top tokens by market cap from <code>cookiescan.io</code>. Quote 1 COOK → bCOOK via Cookiebox CLMM (<code>agg.cookiebox.app</code>).</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Token</th><th>Price</th><th>MCap USD</th><th>Mint</th></tr></thead>
+        <tbody id="mktBody"><tr><td colspan="4">Loading markets…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>On-chain activity</h2>
+    <p class="hint">Signatures from <code>getSignaturesForAddress</code> on <code>rpc.cookiescan.io</code>. Click through to Cookiescan.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Signature</th><th>Status</th><th>Slot</th><th>Time</th></tr></thead>
+        <tbody id="txBody"><tr><td colspan="4">Connect Nightly to load your Cookie Chain history.</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel howto">
+    <h2>How it uses Cookie Chain</h2>
+    <ol>
+      <li><strong>Wallet:</strong> Nightly (required). Add custom network RPC <code>https://rpc.cookiescan.io</code> if Nightly asks. Genesis <code>9wDaBRDgArEUpvhHxGguNkwozsZh4UpGZB9o2EoEcBB2</code>.</li>
+      <li><strong>Read:</strong> Cookie RPC (<code>getHealth</code>, balance, slot, signatures) plus Cookiescan markets and Cookiebox <code>/quote</code>.</li>
+      <li><strong>Write:</strong> SPL Memo ping signed by Nightly. Fee is paid in COOK. Explorer: <a href="https://cookiescan.io" target="_blank" rel="noopener">cookiescan.io</a>.</li>
+      <li><strong>DeFi:</strong> live COOK→bCOOK route through Cookiebox CLMM. Swap UI uses the same aggregator judges use on cookiebox.app.</li>
+      <li><strong>Bridge COOK in:</strong> <a href="https://bridge.cookiescan.io" target="_blank" rel="noopener">bridge.cookiescan.io</a> if the wallet has no COOK for fees.</li>
+    </ol>
+  </section>
+  <footer>
+    <p>Open source · Cookie PnL · Superteam bounty “Create an App on Cookie Chain” · Pato Gomez</p>
+  </footer>
+  <script src="https://unpkg.com/@solana/web3.js@1.98.4/lib/index.iife.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
